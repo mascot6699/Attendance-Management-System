@@ -1,3 +1,10 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import oracle.jdbc.OraclePreparedStatement;
+import oracle.jdbc.OracleResultSet;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,6 +16,10 @@
  */
 public class Entryportal extends javax.swing.JFrame {
 
+    
+    Connection conn = null;
+    OraclePreparedStatement pst = null;
+    OracleResultSet rs = null;
     /**
      * Creates new form Entryportal
      */
@@ -136,6 +147,42 @@ public class Entryportal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            Class.forName("oracle.jdbc.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "umang");
+            String sql = "select * from login where username=? and password=? and usertype = ?";
+            pst = (OraclePreparedStatement) conn.prepareStatement(sql);
+            pst.setString(1, Utext.getText());
+            pst.setString(2, Upass.getText());
+            pst.setString(3, (String)Utype.getSelectedItem());
+            rs = (OracleResultSet) pst.executeQuery();
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Succesfully logged in");
+                
+                if( Utype.getSelectedItem()=="Administrator")
+                {
+                Addinfoform f2 = new Addinfoform();
+                f2.setVisible(true);
+                dispose();
+                }
+                else
+                if( Utype.getSelectedItem()=="Teacher")
+                {
+                Teacher1 f2 = new Teacher1();
+                f2.setVisible(true);
+                dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Please check your username or paswword");
+
+            }
+        } catch (Exception e) {
+            System.out.println("no");
+            JOptionPane.showMessageDialog(null, e);
+
+        }  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -2,7 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendanceproj;
+
+
 
 /**
  *
@@ -15,5 +16,8 @@ public class Attendanceproj {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Entryportal f1 = new Entryportal();
+        f1.setVisible(true);
     }
 }
