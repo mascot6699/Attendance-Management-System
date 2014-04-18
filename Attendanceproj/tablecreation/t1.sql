@@ -87,3 +87,18 @@ CREATE  TABLE     attendence  (
     REFERENCES    student  ( idstudent  ,  subject_subjectid  )
     ON DELETE CASCADE
    );
+
+-- not used because of normalize
+
+CREATE SEQUENCE dept_seq;
+
+CREATE OR REPLACE TRIGGER student_inc 
+BEFORE INSERT ON student 
+FOR EACH ROW
+
+BEGIN
+  SELECT dept_seq.NEXTVAL
+  INTO   :new.idstudent
+  FROM   dual;
+END;
+/

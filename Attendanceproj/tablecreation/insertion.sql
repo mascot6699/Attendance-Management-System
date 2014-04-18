@@ -33,6 +33,7 @@ insert into student values(1,'Arvind Kejriwal','Computer','Third',101);
 insert into student values(1,'Arvind Kejriwal','Computer','Third',102);
 insert into student values(2,'Vikas Singh','Computer','Fourth',102);
 insert into student values(2,'Vikas Singh','Computer','Fourth',103);
+insert into student values(4,'asavsv ','Computer','Fourth',103);
 
 
 insert into attendence values(TO_DATE('2014-01-01', 'yyyy-mm-dd'),'Present',1,101);
