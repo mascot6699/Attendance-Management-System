@@ -13,6 +13,11 @@ insert into teacher values (4,'Umang','umang');
 insert into subject values(101,'Data Structures');
 insert into subject values(102,'Operating Systems');
 insert into subject values(103,'Database Management');
+insert into subject values(104,'Unix Programming');
+insert into subject values(105,'System Softwares');
+insert into subject values(106,'Environment & Health');
+insert into subject values(107,'Wireless Networks');
+
 
 
 insert into teaches values(1,101);
