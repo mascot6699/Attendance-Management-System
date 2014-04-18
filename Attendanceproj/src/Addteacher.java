@@ -1,3 +1,10 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import oracle.jdbc.OraclePreparedStatement;
+import oracle.jdbc.OracleResultSet;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,6 +22,10 @@ public class Addteacher extends javax.swing.JFrame {
     public Addteacher() {
         initComponents();
     }
+    
+    Connection conn = null;
+    OraclePreparedStatement pst = null;
+    OracleResultSet rs = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,10 +49,17 @@ public class Addteacher extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jLabel1.setText("Name");
+        jLabel1.setText("Id");
 
-        jLabel2.setText("Department");
+        jTextField1.setEditable(false);
+
+        jLabel2.setText("Name");
 
         jLabel3.setText("Username");
 
@@ -59,6 +77,11 @@ public class Addteacher extends javax.swing.JFrame {
         });
 
         jButton2.setText("Add");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +157,83 @@ public class Addteacher extends javax.swing.JFrame {
         f2.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            Class.forName("oracle.jdbc.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "umang");
+            String sql = "insert into login (username, password, usertype) values(?,?,?)";
+            pst = (OraclePreparedStatement) conn.prepareStatement(sql);
+            String id = jTextField3.getText();
+            String pass = jTextField4.getText();
+            String type = "Teacher";
+            pst.setString(1,id);
+            pst.setString(2, pass);
+            pst.setString(3,"Teacher");
+            //System.out.println(""+id + "  " + pass);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Saved in login");
+   
+        } catch (Exception e ) {
+            System.out.println("no");
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+         
+         try {
+            Class.forName("oracle.jdbc.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "umang");
+            String sql = "insert into teacher (teacherid, teachername, Login_username) values(?,?,?)";
+            pst = (OraclePreparedStatement) conn.prepareStatement(sql);
+            String id = jTextField1.getText();
+            String name = jTextField2.getText();
+            String user = jTextField3.getText();
+            pst.setString(1,id);
+            pst.setString(2, name);
+            pst.setString(3,user);
+            //System.out.println(""+id + "  " + pass);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Saved in teacher");
+   
+        } catch (Exception e ) {
+            System.out.println("no");
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        try
+        {
+        Class.forName("oracle.jdbc.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "umang");
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"connection nathi thatu");
+        }
+        String sql = "select max(teacherid)+1 from teacher";
+        
+        try{
+            
+            pst = (OraclePreparedStatement) conn.prepareStatement(sql);
+            rs = (OracleResultSet) pst.executeQuery();
+            while(rs.next())
+            {
+                String sub = rs.getString(1);
+                jTextField1.setText(sub);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e+"oho");
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
