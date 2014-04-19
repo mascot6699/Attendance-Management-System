@@ -24,3 +24,22 @@ CLOSE student_total;
 
 END; 
 /
+
+
+--
+
+CREATE PROCEDURE make is
+c        NUMBER(4);
+c1       NUMBER(4);
+CURSOR cur1 IS SELECT student_idstudent, count(CASE WHEN  status = 'Present'  then 1 END)/count(*)*100 as percentage FROM attendence where student_subject_subjectid = 102 group by student_idstudent;
+BEGIN
+execute immediate 'truncate table myatt';
+OPEN cur1;
+LOOP
+FETCH cur1 into c,c1;
+EXIT WHEN cur1%NOTFOUND;
+insert into myatt values(c,c1);
+END LOOP;
+CLOSE cur1;
+END make;
+/

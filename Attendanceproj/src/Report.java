@@ -113,8 +113,12 @@ jTable2.setModel(DbUtils.resultSetToTableModel(rs));
 try {
     Class.forName("oracle.jdbc.OracleDriver");
     conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "umang");
-    String sql = "SELECT student_idstudent, count(CASE WHEN  status = 'Present'  then 1 END)/count(*)*100 as percentage FROM attendence where student_subject_subjectid = 102 group by student_idstudent";
-    UpdateJTable(sql);
+    //String sql = "SELECT student_idstudent, count(CASE WHEN  status = 'Present'  then 1 END)/count(*)*100 as percentage FROM attendence where student_subject_subjectid = 102 group by student_idstudent";
+    String sql ="BEGIN\n"
+            + "make;\n"
+            + "END;\n";
+    String sql1 = "select * from myatt";
+    UpdateJTable(sql1);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } 
