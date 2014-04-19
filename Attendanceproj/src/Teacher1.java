@@ -92,6 +92,11 @@ public class Teacher1 extends javax.swing.JFrame {
         jLabel2.setText("Choose Subject");
 
         jButton1.setText("Take Attendance");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Generate Report");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +159,15 @@ public class Teacher1 extends javax.swing.JFrame {
         f1.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+         Takeattendence f2 = new Takeattendence();
+                f2.setVisible(true);
+                f2.UpdateJTable((String)jComboBox1.getSelectedItem());
+                dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

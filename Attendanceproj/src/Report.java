@@ -117,6 +117,8 @@ try {
     String sql ="BEGIN\n"
             + "make;\n"
             + "END;\n";
+    pst = (OraclePreparedStatement) conn.prepareStatement(sql);
+            pst.execute();
     String sql1 = "select * from myatt";
     UpdateJTable(sql1);
         } catch (Exception e) {
