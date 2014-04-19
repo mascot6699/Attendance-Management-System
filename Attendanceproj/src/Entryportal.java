@@ -172,6 +172,7 @@ public class Entryportal extends javax.swing.JFrame {
                 {
                 Teacher1 f2 = new Teacher1();
                 f2.setVisible(true);
+                f2.setit(Utext.getText());
                 dispose();
                 }
             } else {
