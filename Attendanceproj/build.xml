@@ -12,8 +12,8 @@
     <import file="nbproject/build-impl.xml"/>
     <!--
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
+    Here exist several targets which are by default empty and which can be 
+    used for execution in your tasks. These targets are usually executed 
     before and after some main targets. They are: 
 
       -pre-init:                 called before initialization of project properties
@@ -30,7 +30,7 @@
       -post-jar:                 called after JAR building
       -post-clean:               called after cleaning build products
 
-    (Targets beginning with '-' are not intended to be called on their own.)
+    (Targets beginning with '-' are not intended to be called of their own.)
 
     Example of inserting an obfuscator after compilation could look like this:
 
