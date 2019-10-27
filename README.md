@@ -3,9 +3,9 @@
 This is Java-Based desktop application that was built over the course of a semester in a Database Management Systems course 2013-14 at NIT-Surat.
 
 The team were
-1. Umang Shukla
+1. tejas gowda
 2. Pranay Sharma
-3. Krishnan Iyer
+3. shreyas Iyer
 
 
 ## Introduction
